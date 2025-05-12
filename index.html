@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stradagram</title>
+    <script src="/src/main.ts" type="module" defer></script>
+    <link rel="stylesheet" href="./styles/style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <header><div>Stradagram</div></header>
+      <main>
+        <div class="chat-container">
+          <div class="chat-actions">
+            <button
+              type="button"
+              class="actions--buttons button-settings"
+              id="settings-btn"
+              aria-haspopup="dialog"
+              aria-controls="popup-dialog-settings"
+            >
+              Settings
+            </button>
+            <button class="actions--buttons button-exit" id="exit-btn">Exit</button>
+          </div>
+          <div class="chat-window"></div>
+          <form class="chat-message-sending-interface">
+            <input class="input-message-text" type="text" placeholder="Message" />
+            <button class="send-message-button hide-send-button" type="submit">Send</button>
+          </form>
+        </div>
+      </main>
+      <footer></footer>
+    </div>
+
+    <dialog class="popup-settings-menu" id="popup-dialog-settings">
+      <div class="dialogs-wrapper">
+        <div class="popup-settings-title-and-close-button">
+          <p>Settings</p>
+          <button class="popup-close-settings-button" id="close-settings-button"></button>
+        </div>
+        <p>Your name</p>
+        <form class="popup-input-name-form">
+          <input class="popup-name-input" type="text" placeholder="Enter name" required />
+          <button class="popup-settings-input-button">-></button>
+        </form>
+      </div>
+    </dialog>
+    <dialog class="popup-settings-menu" id="popup-authorization-window">
+      <div class="dialogs-wrapper">
+        <p>Authorization</p>
+        <p>Your email:</p>
+        <form class="popup-input-email-form">
+          <input class="popup-email-input" type="email" placeholder="Enter email" required />
+          <button class="popup-get-code-button">Get code</button>
+        </form>
+        <button class="enter-code-button">Enter code</button>
+      </div>
+    </dialog>
+    <dialog class="popup-settings-menu" id="popup-confirm-authorization-window">
+      <div class="dialogs-wrapper">
+        <p>Confirmation</p>
+        <p>Your code:</p>
+        <form class="popup-input-code-form">
+          <input class="popup-code-input" type="text" placeholder="Enter code" required />
+          <button class="popup-enter-button">Enter</button>
+        </form>
+      </div>
+    </dialog>
+
+    <template class="template-message" id="template">
+      <div class="message">
+        <div class="message-text"></div>
+        <div class="message-sending-time"></div>
+      </div>
+    </template>
+  </body>
+</html>
