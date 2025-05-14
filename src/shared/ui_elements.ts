@@ -19,6 +19,7 @@ export const UI_ELEMENTS = {
     "#close-settings-button"
   ) as HTMLButtonElement | null,
   POPUP_LOGIN_CODE_BTN: document.querySelector(".enter-code-button") as HTMLButtonElement | null,
+  SCROLL_DOWN_BTN: document.querySelector(".scroll-down-button") as HTMLButtonElement | null,
 
   INPUT_MESSAGE_TEXT: document.querySelector(".input-message-text") as HTMLInputElement | null,
   POPUP_CONFIRM_CODE_INPUT: document.querySelector(".popup-code-input") as HTMLInputElement | null,

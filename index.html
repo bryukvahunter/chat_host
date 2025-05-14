@@ -25,9 +25,10 @@
             <button class="actions--buttons button-exit" id="exit-btn">Exit</button>
           </div>
           <div class="chat-window"></div>
+          <button type="button" class="scroll-down-button"></button>
           <form class="chat-message-sending-interface">
             <input class="input-message-text" type="text" placeholder="Message" />
-            <button class="send-message-button hide-send-button" type="submit">Send</button>
+            <button class="send-message-button hide-send-button" type="submit"></button>
           </form>
         </div>
       </main>
@@ -71,6 +72,7 @@
 
     <template class="template-message" id="template">
       <div class="message">
+        <div class="user-name">userName</div>
         <div class="message-text"></div>
         <div class="message-sending-time"></div>
       </div>

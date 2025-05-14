@@ -18,6 +18,8 @@ import {
   confirmCodeHandle,
   changeNameInChatHandle,
   authorizationWindowClosingHandler,
+  scrollDownButtonHandle,
+  exitChatHandle,
 } from "./user_action_handles";
 import { API_URL } from "../api/api_constants";
 
@@ -52,6 +54,8 @@ function setListeners() {
   UI_ELEMENTS.SETTINGS_CHAT_BUTTON?.addEventListener(EVENTS.CLICK, openSettingsMenuHandle);
   UI_ELEMENTS.POPUP_EXIT_SETTINGS_BTN?.addEventListener(EVENTS.CLICK, closeOnBackDropClickHandle);
   UI_ELEMENTS.POPUP_LOGIN_CODE_BTN?.addEventListener(EVENTS.CLICK, openConfirmationWindowHandle);
+  UI_ELEMENTS.SCROLL_DOWN_BTN?.addEventListener(EVENTS.CLICK, scrollDownButtonHandle);
+  UI_ELEMENTS.EXIT_CHAT_BUTTON?.addEventListener(EVENTS.CLICK, exitChatHandle);
 }
 
 export { logInToChat, startAuthorization, setListeners, currentSocket };

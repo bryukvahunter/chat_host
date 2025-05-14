@@ -13,6 +13,7 @@ const SELECTOR: stringValues = {
   HIDE_SEND_BUTTON: "hide-send-button",
   MY_MESSAGE: "my-message",
   OTHERS_MESSAGE: "message-from-anybody",
+  TEMPLATE_USER_NAME: ".user-name",
   TEMPLATE_MESSAGE_TEXT: ".message-text",
   TEMPLATE_MESSAGE_TIME: ".message-sending-time",
   TEMPLATE_MESSAGE_BOX: ".message",

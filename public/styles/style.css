@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Roboto";
-  src: url("/public/assets/fonts/Roboto-Regular.woff2");
+  src: url("/assets/fonts/Roboto-Regular.woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -89,6 +89,8 @@ body {
   font-weight: 400;
   font-size: 16px;
   line-height: 1;
+  background-image: url(/assets/images/backgroundWallpaper.png);
+  background-size: cover;
 }
 
 body:has(dialog[open]) {
@@ -116,19 +118,16 @@ header {
   align-items: center;
   justify-content: center;
   font-size: 32px;
-  background-color: bisque;
   flex: 0 0 40px;
 }
 
 main {
-  background-color: rgb(220, 220, 220);
   flex: 1 1 auto;
   display: flex;
   align-items: center;
 }
 
 footer {
-  background-color: burlywood;
   flex: 0 0 40px;
 }
 
@@ -148,6 +147,7 @@ button {
   row-gap: 8px;
   padding: 8px;
   border-radius: 10px;
+  position: relative;
 }
 
 .chat-actions {
@@ -172,12 +172,13 @@ button {
 .chat-window {
   border: var(--border);
   overflow: auto;
+  scroll-behavior: smooth;
   flex: 1 1 auto;
   display: flex;
   flex-direction: column-reverse;
   padding: 10px;
   gap: 10px;
-  background-image: url(/public/assets/images/wallpaper.jpg);
+  background-image: url(/assets/images/wallpaper.jpg);
   background-size: cover;
   object-fit: cover;
 }
@@ -195,29 +196,60 @@ button {
   border-radius: 10px;
 }
 
-.my-message {
+.scroll-down-button {
+  position: absolute;
+  left: 265px;
+  top: 440px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-image: url(/assets/icons/downArrow.svg);
+  background-size: cover;
+  background-color: #8af8e9;
+  border: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  opacity: 1;
+  visibility: visible;
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.message {
   border-radius: 15px;
   width: max-content;
   max-width: 80%;
-  align-self: flex-end;
   padding: 10px;
   word-wrap: break-word;
-  text-align: end;
-  background-color: rgba(66, 154, 146, 0.734);
   color: white;
 }
 
+.my-message {
+  align-self: flex-end;
+  background-color: rgba(66, 154, 146, 0.734);
+}
+
 .message-from-anybody {
-  border-radius: 15px;
-  width: max-content;
-  max-width: 80%;
   align-self: flex-start;
-  padding: 10px;
-  word-wrap: break-word;
-  text-align: start;
-  background-color: var(--color-delivered-message);
-  color: white;
   background-color: #363a3fb6;
+}
+
+.user-name {
+  text-align: start;
+  margin-bottom: 7px;
+  color: #21f8f8;
+  font-family: Roboto;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+
+.message-text {
+  padding-right: 10px;
 }
 
 .message-sending-time {
@@ -237,7 +269,6 @@ button {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  gap: 8px;
   transition: all 0.3s ease;
 }
 
@@ -255,10 +286,15 @@ button {
 }
 
 .send-message-button {
-  background-color: #87f4e9;
+  width: 35px;
+  height: 30px;
+  background-image: url(/assets/icons/rightArrow.svg);
+  background-size: cover;
   border: none;
   border-radius: 5px;
-  transition: opacity 0.5s ease, margin 0.5s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease, margin 0.3s ease, padding 0.3s ease,
+    width 0.3s ease;
+  margin-left: 5px;
 }
 
 .send-message-button:hover {
@@ -291,7 +327,7 @@ dialog::backdrop {
 }
 
 .popup-close-settings-button {
-  background-image: url(/public/assets/icons/cross.svg);
+  background-image: url(/assets/icons/cross.svg);
   background-size: cover;
   width: 15px;
   height: 15px;
@@ -312,21 +348,21 @@ dialog::backdrop {
 }
 
 .hide-send-button {
-  /* opacity: 0; */
-  display: none;
-  margin: 0;
+  opacity: 0;
   pointer-events: none;
   width: 0;
+  margin: 0;
   padding: 0;
-  border: none;
-  font-size: 0;
-  line-height: 0;
-  color: transparent;
+  transform: scale(0.5);
 }
 
 .display-show {
   opacity: 1;
+  width: 35px;
   transform: scale(1);
   pointer-events: auto;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.popup-input-email-form {
+  margin-bottom: 10px;
 }

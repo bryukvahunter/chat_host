@@ -66,10 +66,24 @@ function authorizationWindowClosingHandler(event: Event) {
   }
 }
 
+function scrollDownButtonHandle() {
+  const chatWindow = UI_ELEMENTS.CHAT_WINDOW;
+  if (!chatWindow) return;
+
+  chatWindow.scrollTop = chatWindow.scrollHeight;
+}
+
+function exitChatHandle() {
+  Cookies.remove(COOKIE_KEY.CHAT_TOKEN);
+  location.reload();
+}
+
 export {
   sendButtonStateHandle,
   sendEmailToRegHandle,
   confirmCodeHandle,
   changeNameInChatHandle,
   authorizationWindowClosingHandler,
+  scrollDownButtonHandle,
+  exitChatHandle,
 };

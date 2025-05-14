@@ -2,6 +2,7 @@ import { UI_ELEMENTS } from "../shared/ui_elements";
 import { renderLastMessageInChat } from "../view/create_ui_elem";
 import { currentSocket } from "./data_processing";
 import { uiState } from "../shared/states";
+import { sendButtonStateHandle } from "./user_action_handles";
 
 function setRealTimeRenderHandle() {
   if (!currentSocket) return;
@@ -20,6 +21,7 @@ function sendMessageTextToServer(event: Event) {
 
   const form = event.currentTarget as HTMLFormElement;
   form.reset();
+  sendButtonStateHandle();
 }
 
 export { sendMessageTextToServer, setRealTimeRenderHandle };
