@@ -1,3 +1,11 @@
+interface email {
+  email: string;
+}
+
+interface changeName {
+  name: string;
+}
+
 interface fetchParams {
   method: string;
   headers: {
@@ -7,4 +15,4 @@ interface fetchParams {
   body?: string;
 }
 
-export type { fetchParams };
+export type { fetchParams, email, changeName };

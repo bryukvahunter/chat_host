@@ -1,4 +1,4 @@
-import type { stringValues } from "../shared/ts_types/for_constants";
+import type { stringValues } from "../shared/types/for_constants";
 
 const API_URL: stringValues = {
   CHAT_REG: "https://edu.strada.one/api/user",

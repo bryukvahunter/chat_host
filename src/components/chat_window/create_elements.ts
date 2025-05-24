@@ -1,11 +1,11 @@
-import type { messageObject } from "../shared/ts_interfaces/for_backend_response";
-import { UI_ELEMENTS } from "../shared/ui_elements";
-import { ERRORS, SELECTOR, TIME_FORMAT } from "../shared/constants";
-import { emailState } from "../shared/states";
+import { chatWindowUi } from "./ui";
+import { SELECTOR, ERRORS, TIME_FORMAT } from "../../shared/constants";
+import { emailState } from "../../app_control/states";
 import { format } from "date-fns";
+import type { messageObject } from "../../shared/interfaces/responses";
 
 function createMessageElement(createdAt: string, text: string, email: string, userName: string) {
-  const templateElement = UI_ELEMENTS.MESSAGE_TEMPLATE;
+  const templateElement = chatWindowUi.messageTemplate;
   if (!templateElement) throw new Error(ERRORS.ELEMENT_NOT_FOUND);
 
   const copyOfMessageTemplateFragment = templateElement.content.cloneNode(true) as DocumentFragment;
@@ -45,15 +45,4 @@ function createFragmentForAllMessages(array: Array<messageObject>) {
   return newMessageTemplate;
 }
 
-function renderLastMessageInChat(messageObject: messageObject) {
-  UI_ELEMENTS.CHAT_WINDOW?.prepend(
-    createMessageElement(
-      format(messageObject.createdAt, TIME_FORMAT.HOURS_MINUTES),
-      messageObject.text,
-      messageObject.user.email,
-      messageObject.user.name
-    )
-  );
-}
-
-export { createMessageElement, createFragmentForAllMessages, renderLastMessageInChat };
+export { createMessageElement, createFragmentForAllMessages };

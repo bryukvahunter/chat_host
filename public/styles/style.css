@@ -81,7 +81,6 @@ body {
 html,
 body {
   height: 100%;
-  scrollbar-gutter: stable;
 }
 
 body {
@@ -175,23 +174,30 @@ button {
   scroll-behavior: smooth;
   flex: 1 1 auto;
   display: flex;
-  flex-direction: column-reverse;
-  padding: 10px;
-  gap: 10px;
+  flex-direction: column;
   background-image: url(/assets/images/wallpaper.jpg);
   background-size: cover;
   object-fit: cover;
 }
 
-.chat-window::-webkit-scrollbar {
+.messages-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  overflow: auto;
+  overflow: auto;
+}
+
+.messages-wrapper::-webkit-scrollbar {
   width: 3px;
 }
 
-.chat-window::-webkit-scrollbar-track {
+.messages-wrapper::-webkit-scrollbar-track {
   background: transparent;
 }
 
-.chat-window::-webkit-scrollbar-thumb {
+.messages-wrapper::-webkit-scrollbar-thumb {
   background-color: #ffffff;
   border-radius: 10px;
 }
@@ -304,10 +310,34 @@ button {
 .popup-settings-menu {
   position: fixed;
   padding: 0;
-  right: 15px;
   border: var(--border);
   width: 273px;
   height: 319px;
+  background-color: #38b0725e;
+  border-radius: 15px;
+  color: white;
+}
+
+.load-spinner {
+  position: fixed;
+  padding: 0;
+  border: var(--border);
+  width: 273px;
+  height: 319px;
+  background-color: #38b0725e;
+  border-radius: 15px;
+  background-image: url(/assets/icons/gear-spinner.svg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 200px 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dialog-hidden {
+  display: none !important;
 }
 
 dialog::backdrop {
@@ -341,6 +371,11 @@ dialog::backdrop {
 
 .popup-name-input {
   width: 85%;
+  background-color: #7ccfa9;
+  color: black;
+  border-radius: 15px;
+  padding-left: 10px;
+  border: none;
 }
 
 .scroll-lock {
@@ -364,5 +399,70 @@ dialog::backdrop {
 }
 
 .popup-input-email-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 5px;
+  background-color: #38b07200;
+  color: white;
+}
+
+.popup-input-code-form {
+  display: flex;
+  flex-direction: column;
+  color: black;
+}
+
+.popup-email-input {
+  background-color: #7ccfa9;
+  color: black;
+  border-radius: 15px;
+  padding-left: 10px;
+  border: none;
+}
+
+.popup-get-code-button {
+  background-color: #00b092;
+  color: white;
+  border-radius: 15px;
+  border: none;
+}
+
+.popup-settings-input-button {
+  background-color: #00b092;
+  color: white;
+  border-radius: 50%;
+  border: none;
+}
+
+.popup-code-input {
   margin-bottom: 10px;
+  background-color: #7ccfa9;
+  color: black;
+  border-radius: 15px;
+  padding-left: 10px;
+  border: none;
+}
+
+.popup-enter-button {
+  background-color: #00b092;
+  color: white;
+  border-radius: 15px;
+  border: none;
+}
+
+.enter-code-button {
+  width: 100%;
+  background-color: #00b092;
+  color: white;
+  border-radius: 15px;
+  border: none;
+}
+
+.confirm-back-button {
+  background-image: url(/assets/icons/backArrow.svg);
+  background-size: cover;
+  width: 20px;
+  height: 20px;
+  border: none;
 }

@@ -12,4 +12,8 @@ interface messageObject {
   _id: string;
 }
 
-export type { messageObject };
+interface messages<T> {
+  messages: [T];
+}
+
+export type { messageObject, messages };

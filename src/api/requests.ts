@@ -1,108 +1,67 @@
 import Cookies from "js-cookie";
 import { COOKIE_KEY } from "../shared/constants";
-import { API_URL, HEADERS_KEYS_VALUE, HTTP_METHODS } from "./api_constants";
-import type { fetchParams } from "../shared/ts_interfaces/for_requests";
-import { emailState } from "../shared/states";
+import { HEADERS_KEYS_VALUE, HTTP_METHODS } from "./api_constants";
+import { checkIsToken } from "../shared/helpers";
 
-async function getFetch(url: string, params: fetchParams) {
-  const response = await fetch(url, params);
-  if (!response.ok) throw new Error(`ошибка - ${response.status}`);
-  return response.json();
-}
-
-async function receiveTokenByEmail(email: string) {
+async function get(url: string, token: string) {
   try {
-    const codeRequest = await getFetch(API_URL.CHAT_REG, {
-      method: HTTP_METHODS.POST,
-      headers: {
-        "Content-Type": HEADERS_KEYS_VALUE.JSON_AND_CHARSET,
-      },
-      body: JSON.stringify({ email: email }),
-    });
-    console.log(codeRequest);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-async function getMessageHistory() {
-  try {
-    const messageHistory = await getFetch(API_URL.CHAT_MESSAGE_HISTORY, {
-      method: HTTP_METHODS.GET,
-      headers: {
-        "Content-Type": HEADERS_KEYS_VALUE.JSON_AND_CHARSET,
-        Authorization: `Bearer ${Cookies.get(COOKIE_KEY.CHAT_TOKEN)}`,
-      },
-    });
-    console.log(messageHistory);
-    return messageHistory;
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-async function checkIsValidToken(token: string) {
-  try {
-    const regInfoResponse = await getFetch(API_URL.CHAT_USER_INFO, {
+    const response = await fetch(url, {
       method: HTTP_METHODS.GET,
       headers: {
         "Content-Type": HEADERS_KEYS_VALUE.JSON_AND_CHARSET,
         Authorization: `Bearer ${token}`,
       },
     });
-    return regInfoResponse;
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => {});
+      throw new Error(errorData.message);
+    }
+    return response.json();
   } catch (error) {
     console.error(error);
+    throw error;
   }
 }
 
-async function changeNameRequest(name: string) {
+async function post<T>(url: string, body: T) {
   try {
-    await getFetch(API_URL.CHAT_REG, {
+    const response = await fetch(url, {
+      method: HTTP_METHODS.POST,
+      headers: {
+        "Content-Type": HEADERS_KEYS_VALUE.JSON_AND_CHARSET,
+      },
+      body: JSON.stringify(body),
+    });
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => {});
+      throw new Error(errorData.message);
+    }
+    return response.json();
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
+async function patch<T>(url: string, body: T) {
+  try {
+    const response = await fetch(url, {
       method: HTTP_METHODS.PATCH,
       headers: {
         "Content-Type": HEADERS_KEYS_VALUE.JSON_AND_CHARSET,
-        Authorization: `Bearer ${Cookies.get(COOKIE_KEY.CHAT_TOKEN)}`,
+        Authorization: `Bearer ${checkIsToken(Cookies.get(COOKIE_KEY.CHAT_TOKEN))}`,
       },
-      body: JSON.stringify({ name: name }),
+      body: JSON.stringify(body),
     });
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => {});
+      throw new Error(errorData.message);
+    }
+    return response.json();
   } catch (error) {
     console.error(error);
+    throw error;
   }
 }
 
-async function requestMyDetails() {
-  try {
-    const myDetails = await getFetch(API_URL.CHAT_USER_INFO, {
-      method: HTTP_METHODS.GET,
-      headers: {
-        "Content-Type": HEADERS_KEYS_VALUE.JSON_AND_CHARSET,
-        Authorization: `Bearer ${Cookies.get(COOKIE_KEY.CHAT_TOKEN)}`,
-      },
-    });
-    return myDetails;
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-async function setActualEmail() {
-  try {
-    const myData = await requestMyDetails();
-    if (!myData?.email) throw new Error("email not found");
-
-    emailState.currentEmail = myData.email;
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-export {
-  getFetch,
-  getMessageHistory,
-  receiveTokenByEmail,
-  changeNameRequest,
-  requestMyDetails,
-  setActualEmail,
-  checkIsValidToken,
-};
+export { get, post, patch };

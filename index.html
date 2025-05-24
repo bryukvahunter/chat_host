@@ -24,8 +24,8 @@
             </button>
             <button class="actions--buttons button-exit" id="exit-btn">Exit</button>
           </div>
-          <div class="chat-window"></div>
-          <button type="button" class="scroll-down-button"></button>
+          <div class="chat-window"><div class="messages-wrapper"></div></div>
+          <button type="button" class="scroll-down-button hidden"></button>
           <form class="chat-message-sending-interface">
             <input class="input-message-text" type="text" placeholder="Message" />
             <button class="send-message-button hide-send-button" type="submit"></button>
@@ -48,7 +48,7 @@
         </form>
       </div>
     </dialog>
-    <dialog class="popup-settings-menu" id="popup-authorization-window">
+    <dialog class="popup-settings-menu" id="registration-window">
       <div class="dialogs-wrapper">
         <p>Authorization</p>
         <p>Your email:</p>
@@ -61,6 +61,7 @@
     </dialog>
     <dialog class="popup-settings-menu" id="popup-confirm-authorization-window">
       <div class="dialogs-wrapper">
+        <button class="confirm-back-button"></button>
         <p>Confirmation</p>
         <p>Your code:</p>
         <form class="popup-input-code-form">
@@ -69,6 +70,7 @@
         </form>
       </div>
     </dialog>
+    <dialog class="load-spinner" id="load-window"></dialog>
 
     <template class="template-message" id="template">
       <div class="message">

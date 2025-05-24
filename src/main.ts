@@ -1,3 +1,3 @@
-import { initApp } from "./logic/init_app";
+import { initApp } from "./app_control/init_app";
 
 initApp();
